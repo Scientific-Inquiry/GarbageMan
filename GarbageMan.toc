@@ -1,0 +1,19 @@
+## Interface:70300
+## Title: GarbageMan
+## Author: ScientificInquiry 
+## Notes: Helps bag management
+
+## X-Category: Interface Enhancements
+## X-Website:
+## X-Donate:
+
+##SavedVariables: GarbageMan_BlackList, GarbageMan_WhiteList, GarbageMan_Auto_Sell_Garbage, GarbageMan_Auto_Delete, GarbageMan_Auto_Refund, GarbageMan_Auto_Bind, GarbageMan_ItemBlackList, GarbageMan_ItemWhiteList
+##SavedVariablesPerCharacter: GarbageMan_Expansion_Choice, GarbageMan_Auto_Sell_LowerGear, GarbageMan_SetIlvl, GarbageMan_Sell_Threshold, GarbageMan_ItemBlackListPC, GarbageMan_ItemWhiteListPC
+
+GarbageMan.xml
+
+Core.lua
+Panel.lua
+Frame.lua
+Tutorial.lua
+GarbageMan.lua

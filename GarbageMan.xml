@@ -1,0 +1,191 @@
+<Ui xmlns="http://www.blizzard.com/wow/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+	<Font name="GarbageManTooltipText" inherits="GameFontHighlightSmall" text="Sell Garbage">
+ 	</Font>
+ 	<GameTooltip name="ScanningTooltipTemplate" inherits="GameTooltipTemplate" virtual="true">
+   		<Scripts>
+     		<Onload>
+       			self:SetOwner(WorldFrame, "ANCHOR_NONE");
+     		</Onload>
+   		</Scripts>
+ 	</GameTooltip>
+
+ 	<Button name="GarbageManItemButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="BORDER">
+				<Texture name="$parentIconTexture" parentkey="icon"/>
+				<FontString name="$parentCount" parentkey="count" inherits="NumberFontNormal" justifyH="RIGHT" hidden="true">
+				</FontString>
+
+			</Layer>
+		</Layers>
+		<NormalTexture name="GarbageManButtonIcon" file="Interface\ICONS\ACHIEVEMENT_GUILDPERK_MOBILEBANKING">
+			<Size>
+				<AbsDimension x="32" y="32"/>
+			</Size>
+			
+
+		</NormalTexture>
+		<PushedTexture file="Interface\ICONS\ACHIEVEMENT_GUILDPERK_MOBILEBANKING">
+			<Size>
+					<AbsDimension x="32" y="32"/>
+			</Size>
+		
+		</PushedTexture>
+		<HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD">
+			<Size>
+					<AbsDimension x="32" y="32"/>
+			</Size>
+		
+		</HighlightTexture>
+	</Button>
+
+	<Button name="GarbageManPrevButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="BORDER">
+				<Texture name="$parentIconTexture" parentkey="icon"/>
+				<FontString name="$parentCount" parentkey="count" inherits="NumberFontNormal" justifyH="RIGHT" hidden="true">
+				</FontString>
+
+			</Layer>
+		</Layers>
+		<NormalTexture name="GarbageManButtonIcon" file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up">
+			<Size>
+				<AbsDimension x="32" y="32"/>
+			</Size>
+			
+
+		</NormalTexture>
+		<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down">
+			<Size>
+					<AbsDimension x="32" y="32"/>
+			</Size>
+		
+		</PushedTexture>
+		<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled">
+			<Size>
+					<AbsDimension x="32" y="32"/>
+			</Size>
+		
+		</DisabledTexture>
+		<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+			<Size>
+					<AbsDimension x="32" y="32"/>
+			</Size>
+		
+		</HighlightTexture>
+	</Button>
+
+	<Button name="GarbageManNextButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="BORDER">
+				<Texture name="$parentIconTexture" parentkey="icon"/>
+				<FontString name="$parentCount" parentkey="count" inherits="NumberFontNormal" justifyH="RIGHT" hidden="true">
+				</FontString>
+
+			</Layer>
+		</Layers>
+		<NormalTexture name="GarbageManButtonIcon" file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up">
+			<Size>
+				<AbsDimension x="32" y="32"/>
+			</Size>
+			
+
+		</NormalTexture>
+		<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down">
+			<Size>
+					<AbsDimension x="32" y="32"/>
+			</Size>
+		
+		</PushedTexture>
+		<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled">
+			<Size>
+					<AbsDimension x="32" y="32"/>
+			</Size>
+		
+		</DisabledTexture>
+		<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+			<Size>
+					<AbsDimension x="32" y="32"/>
+			</Size>
+		
+		</HighlightTexture>
+	</Button>
+	
+	<Button name="GarbageManBagItemAutoFilterButtonTemplate" virtual="true">
+		<Size x="28" y="26"/>
+		<NormalTexture file="Interface/ICONS/inv_misc_tolbaradsearchlight"/>
+		<PushedTexture file="Interface/ICONS/inv_misc_tolbaradsearchlight"/>
+		<HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD">
+			<Size x="24" y="23"/>
+		</HighlightTexture>
+		<Scripts>
+			<OnClick>
+				PlaySound(SOUNDKIT.UI_BAG_SORTING_01);
+				GarbageMan.FilterBags()
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+				GameTooltip:SetText("Filter for Garbage Items");
+				GameTooltip:Show();
+			</OnEnter>
+			<OnLeave function="GameTooltip_Hide"/>
+		</Scripts>
+	</Button>
+
+	<Button name="GarbageManBankItemAutoFilterButtonTemplate" virtual="true">
+		<Size x="28" y="26"/>
+		<NormalTexture file="Interface/ICONS/inv_darkmoon_eye"/>
+		<PushedTexture file="Interface/ICONS/inv_darkmoon_eye"/>
+		<HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD">
+			<Size x="24" y="23"/>
+		</HighlightTexture>
+		<Scripts>
+			<OnClick>
+				PlaySound(SOUNDKIT.UI_BAG_SORTING_01);
+				GarbageMan.filterBank()
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+				GameTooltip:SetText("Filter for Garbage Items");
+				GameTooltip:Show();
+			</OnEnter>
+			<OnLeave function="GameTooltip_Hide"/>
+		</Scripts>
+	</Button>
+
+	<EditBox name="GarbageManEditBoxTemplate" inherits="InputBoxTemplate" parentkey="input" autoFocus="false" virtual="true">
+		<Size x = "50" y ="20"/>
+		<Scripts>
+			<OnEscapePressed>
+				self:ClearFocus()
+			</OnEscapePressed>
+
+		</Scripts>
+		<FontString inherits="GameFontHighlight"/>
+	</EditBox>
+
+	<Frame name="GarbageManListFilterTemplate" inherits="UIDropDownMenuTemplate" virtual="true">
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="12" y="-20"/>
+				</Anchors>
+	</Frame>
+
+	<Button name="GarbageManTutorialButtonTemplate" parentKey="MainHelpButton" inherits="MainHelpPlateButton" virtual="true">
+				<Scripts>
+					<OnClick>
+						GarbageMan.ToggleTutorial()
+					</OnClick>
+				</Scripts>
+			</Button>
+ </Ui>
