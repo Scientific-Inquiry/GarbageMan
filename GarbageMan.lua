@@ -598,11 +598,29 @@ function GarbageMan.BankFrameItemButton_Update(button)
 	end
 end
 
+--Purpose: Checks to see if other addons made additional elements for the tooltip (that are not hidden upon creation thus affecting all tutorial displays) and hides them.
+--NOTE: This also reverts the other addon's adverse effects on the all tooltips (i.e. World Map tutorial button's display)
+--Returns: Nothing
+function GarbageMan.FixingBooBoos()
+	local children = { HelpPlateTooltip:GetChildren() }
+
+	if(#children > 0) then --these children are not mine, they are another addon's
+		for _, child in ipairs(children) do
+ 		 	child:Hide()
+		end
+	end
+	--the following line is necessary for other addons that change the strata-level, but do not change it back
+	HelpPlateTooltip:SetFrameStrata("FULLSCREEN_DIALOG") 
+end
+
 --Purpose: Handles how GarbageMan responds to events
 --Arguments: [GarbageMan Object] self, [string] name of event , ... arguments of event
 --Returns: Nothing
 function GarbageMan.EventHandler(self, event, ...)
 	if(event == "MERCHANT_SHOW") then
+		--the following line is necessary for other addons that change the tutorial frame, but do not change it back 
+		GarbageMan.FixingBooBoos() --NOTE: you can detect which addon is doing this by opening the map to see the map tutorial has been altered
+		
 		GarbageMan.GarbageTabButton_Update()
 		GarbageMan.toggleFilter = false
 		if(GarbageMan.toggleFilter) then --change textures for toggle
@@ -611,7 +629,6 @@ function GarbageMan.EventHandler(self, event, ...)
 		else
 			GarbageMan.filterButton:SetNormalTexture("Interface/ICONS/inv_darkmoon_eye")
 			GarbageMan.filterButton:SetPushedTexture("Interface/ICONS/inv_darkmoon_eye")
-
 		end
 
 		if(GarbageMan_Auto_Sell_Garbage) then
@@ -639,6 +656,9 @@ function GarbageMan.EventHandler(self, event, ...)
 		GarbageMan_OnUpdate()
 		GarbageMan.FilterBagsUpdate()
 	elseif(event == "BANKFRAME_OPENED") then
+		--the following line is necessary for other addons that change the tutorial frame, but do not change it back 
+		GarbageMan.FixingBooBoos() --NOTE: you can detect which addon is doing this by opening the map to see the map tutorial has been altered
+
 		--raise flag for GarbageMan
 		GarbageMan.isBankOpen = true --tells GarbageMan to scan more bags
 	elseif(event == "BANKFRAME_CLOSED") then
